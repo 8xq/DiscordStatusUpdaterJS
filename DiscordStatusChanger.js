@@ -1,3 +1,8 @@
+//=============================================================================\\
+//                           DiscordStatusChanger.js                            \\
+//                             made by nullcheats                                \\
+//================================================================================\\
+
 /*
 This is where we import our packages and declare our variables
 We use "Chalk" to output colour to our console
@@ -85,6 +90,5 @@ const Menu = () => {
 	console.log("Status:" + chalk.green("Running"));
 	UpdateStatus();
 }
-
 
 Menu();
