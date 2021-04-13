@@ -38,12 +38,12 @@ const PatchRequest = (Content) => {
 		}
 	}, function(error, response, body) {
 		if (!error && response.statusCode == 200) {
-            console.log(chalk.green("Updated status message | waiting " + Delay + "ms till next !"));
+			console.log(chalk.green("Updated status message | waiting " + Delay + "ms till next !"));
 		} else {
 			if (body.includes("Unauthorized")) {
-                console.log(chalk.red("Unauthorized | 401 | Please check your token"));
+				console.log(chalk.red("Unauthorized | 401 | Please check your token"));
 			} else {
-                console.log(chalk.red("Generic catch error !"));
+				console.log(chalk.red("Generic catch error !"));
 			}
 		}
 	});
@@ -58,17 +58,15 @@ This function will also sleep with a preset delay to avoid any rate limiting or 
 const UpdateStatus = async () => {
 	while (true) {
 		for (var i = 0; i < MessageList.length; i++) {
-            if(UseEmojis == true){
-                let Emoji = MessageList[i].split('|')[1].replace('>','').replace('<','');
-                let EmojiID = Emoji.split(':')[2];
-                let EmojiName = Emoji.split(':')[1];
-                let Message = MessageList[i].split('|')[0];
-                PatchRequest("{\"custom_status\":{\"text\":\"" + Message + "\",\"emoji_id\":\""+EmojiID+"\",\"emoji_name\":\""+EmojiName+"\"}}");
-            }
-            else
-            {
-                PatchRequest("{\"custom_status\":{\"text\":\""+MessageList[i]+"\"}}");
-            }
+			if (UseEmojis == true) {
+				let Emoji = MessageList[i].split('|')[1].replace('>', '').replace('<', '');
+				let EmojiID = Emoji.split(':')[2];
+				let EmojiName = Emoji.split(':')[1];
+				let Message = MessageList[i].split('|')[0];
+				PatchRequest("{\"custom_status\":{\"text\":\"" + Message + "\",\"emoji_id\":\"" + EmojiID + "\",\"emoji_name\":\"" + EmojiName + "\"}}");
+			} else {
+				PatchRequest("{\"custom_status\":{\"text\":\"" + MessageList[i] + "\"}}");
+			}
 			await sleep(Delay);
 		}
 	}
@@ -80,12 +78,12 @@ In the future this could be setup to create a start/stop function :)
 For now this simply invokes "UpdateStatus()" 
 */
 const Menu = () => {
-    console.log(chalk.magenta("\r\n                    ___                         ___                         ___           ___     \r\n     _____         \/\\__\\                       \/\\  \\                       \/\\  \\         \/\\__\\    \r\n    \/::\\  \\       \/:\/ _\/_         ___         \/::\\  \\         ___          \\:\\  \\       \/:\/ _\/_   \r\n   \/:\/\\:\\  \\     \/:\/ \/\\  \\       \/\\__\\       \/:\/\\:\\  \\       \/\\__\\          \\:\\  \\     \/:\/ \/\\  \\  \r\n  \/:\/  \\:\\__\\   \/:\/ \/::\\  \\     \/:\/  \/      \/:\/ \/::\\  \\     \/:\/  \/      ___  \\:\\  \\   \/:\/ \/::\\  \\ \r\n \/:\/__\/ \\:|__| \/:\/_\/:\/\\:\\__\\   \/:\/__\/      \/:\/_\/:\/\\:\\__\\   \/:\/__\/      \/\\  \\  \\:\\__\\ \/:\/_\/:\/\\:\\__\\\r\n \\:\\  \\ \/:\/  \/ \\:\\\/:\/ \/:\/  \/  \/::\\  \\      \\:\\\/:\/  \\\/__\/  \/::\\  \\      \\:\\  \\ \/:\/  \/ \\:\\\/:\/ \/:\/  \/\r\n  \\:\\  \/:\/  \/   \\::\/ \/:\/  \/  \/:\/\\:\\  \\      \\::\/__\/      \/:\/\\:\\  \\      \\:\\  \/:\/  \/   \\::\/ \/:\/  \/ \r\n   \\:\\\/:\/  \/     \\\/_\/:\/  \/   \\\/__\\:\\  \\      \\:\\  \\      \\\/__\\:\\  \\      \\:\\\/:\/  \/     \\\/_\/:\/  \/  \r\n    \\::\/  \/        \/:\/  \/         \\:\\__\\      \\:\\__\\          \\:\\__\\      \\::\/  \/        \/:\/  \/   \r\n     \\\/__\/         \\\/__\/           \\\/__\/       \\\/__\/           \\\/__\/       \\\/__\/         \\\/__\/    \r\n"));
-    console.log(chalk.cyan('     Made by Nullcheats | github.com/HDzzzz ' + chalk.red(' <3 \n \n')));
-    
-    console.log(chalk.cyan('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'));
-    console.log("Status:" + chalk.green("Running"));
-    UpdateStatus();
+	console.log(chalk.magenta("\r\n                    ___                         ___                         ___           ___     \r\n     _____         \/\\__\\                       \/\\  \\                       \/\\  \\         \/\\__\\    \r\n    \/::\\  \\       \/:\/ _\/_         ___         \/::\\  \\         ___          \\:\\  \\       \/:\/ _\/_   \r\n   \/:\/\\:\\  \\     \/:\/ \/\\  \\       \/\\__\\       \/:\/\\:\\  \\       \/\\__\\          \\:\\  \\     \/:\/ \/\\  \\  \r\n  \/:\/  \\:\\__\\   \/:\/ \/::\\  \\     \/:\/  \/      \/:\/ \/::\\  \\     \/:\/  \/      ___  \\:\\  \\   \/:\/ \/::\\  \\ \r\n \/:\/__\/ \\:|__| \/:\/_\/:\/\\:\\__\\   \/:\/__\/      \/:\/_\/:\/\\:\\__\\   \/:\/__\/      \/\\  \\  \\:\\__\\ \/:\/_\/:\/\\:\\__\\\r\n \\:\\  \\ \/:\/  \/ \\:\\\/:\/ \/:\/  \/  \/::\\  \\      \\:\\\/:\/  \\\/__\/  \/::\\  \\      \\:\\  \\ \/:\/  \/ \\:\\\/:\/ \/:\/  \/\r\n  \\:\\  \/:\/  \/   \\::\/ \/:\/  \/  \/:\/\\:\\  \\      \\::\/__\/      \/:\/\\:\\  \\      \\:\\  \/:\/  \/   \\::\/ \/:\/  \/ \r\n   \\:\\\/:\/  \/     \\\/_\/:\/  \/   \\\/__\\:\\  \\      \\:\\  \\      \\\/__\\:\\  \\      \\:\\\/:\/  \/     \\\/_\/:\/  \/  \r\n    \\::\/  \/        \/:\/  \/         \\:\\__\\      \\:\\__\\          \\:\\__\\      \\::\/  \/        \/:\/  \/   \r\n     \\\/__\/         \\\/__\/           \\\/__\/       \\\/__\/           \\\/__\/       \\\/__\/         \\\/__\/    \r\n"));
+	console.log(chalk.cyan('     Made by Nullcheats | github.com/HDzzzz ' + chalk.red(' <3 \n \n')));
+
+	console.log(chalk.cyan('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'));
+	console.log("Status:" + chalk.green("Running"));
+	UpdateStatus();
 }
 
 
