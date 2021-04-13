@@ -3,7 +3,7 @@ This is where we import our packages and declare our variables
 We use "Chalk" to output colour to our console
 We use "Request" to send our PATCH request to the discord endpoint
 Here we also set our "Delay" between setting status (1,000MS = 1 second)
-Here we also declare our discord token that will be used to authorize our actions
+Here we also declare our discord token that will be read from "Data.json" file
 Here we also use a bool "UseEmojis" and this simply states if emojis should be added
 And as you can also see Messages are currently added into an 'array'
 */
